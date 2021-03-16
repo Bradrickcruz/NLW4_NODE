@@ -7,7 +7,7 @@ interface IHbsComponents {
   title: string;
   description: string;
   link: string;
-  user_id: string;
+  id: string;
 }
 
 class SendMailService {
@@ -31,7 +31,7 @@ class SendMailService {
     try {
       const message = await this.client.sendMail({
         to,
-        subject: hbsVars.title,
+        subject: hbsVars.description,
         html,
         from: 'NPS <noreply@nps.com.br>',
       });

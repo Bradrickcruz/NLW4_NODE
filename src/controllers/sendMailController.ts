@@ -32,7 +32,7 @@ class SendMailController {
     }
 
     let surveyUser = await surveyUserRepository.findOne({
-      where: [{ user_id: user.id }, { value: null }, { survey_id: survey.id }],
+      where: { user_id: user.id, value: null, survey_id: survey.id },
       relations: ['user', 'survey'],
     });
 
@@ -47,7 +47,7 @@ class SendMailController {
     const npsPath = resolve(__dirname, '..', 'views', 'emails', 'npsMail.hbs');
     const vars = {
       name: user.name,
-      user_id: user.id,
+      id: surveyUser.id,
       title: survey.title,
       description: survey.description,
       link: process.env.URL_MAIL,
